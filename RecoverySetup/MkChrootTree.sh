@@ -42,7 +42,7 @@ fi
 mount ${LVMDEV} ${ALTROOT}/ || err_out 2 "Mount Failed"
 
 # Prep for next-level mounts
-mkdir -p ${ALTROOT}/{var,opt,home,boot,etc,selinux} || err_out 3 "Mountpoint Create Failed"
+mkdir -p ${ALTROOT}/{var,opt,home,boot,etc,selinux,data} || err_out 3 "Mountpoint Create Failed"
 
 # Mount the boot-root
 echo "Mounting ${BOOTDEV} to ${ALTROOT}/boot"

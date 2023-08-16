@@ -41,7 +41,7 @@ echo "Mounting /dev/VolGroup00/rootVol to ${ALTROOT}"
 mount /dev/VolGroup00/rootVol ${ALTROOT}/ || err_out 2 "Mount Failed"
 
 # Prep for next-level mounts
-mkdir -p ${ALTROOT}/{var,opt,home,boot,etc} || err_out 3 "Mountpoint Create Failed"
+mkdir -p ${ALTROOT}/{var,opt,home,boot,etc,data} || err_out 3 "Mountpoint Create Failed"
 
 # Mount the boot-root
 echo "Mounting ${BOOTDEV} to ${ALTROOT}/boot"
@@ -66,6 +66,9 @@ mount /dev/VolGroup00/auditVol ${ALTROOT}/var/log/audit
 # Mount the rest
 echo "Mounting /dev/VolGroup00/homeVol to ${ALTROOT}/home"
 mount /dev/VolGroup00/homeVol ${ALTROOT}/home/
+
+echo "Mounting /dev/VolGroup00/dataVol to ${ALTROOT}/data"
+mount /dev/VolGroup00/dataVol ${ALTROOT}/data/
 
 # Prep for loopback mounts
 mkdir -p ${ALTROOT}/{proc,sys,dev/{pts,shm},selinux}

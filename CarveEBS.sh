@@ -43,12 +43,13 @@ function LogBrk() {
 
 # Partition as LVM 
 function CarveLVM() {
-   local ROOTVOL=(rootVol 4g)
+   local ROOTVOL=(rootVol 6g)
    local SWAPVOL=(swapVol 2g)
-   local HOMEVOL=(homeVol 1g)
-   local VARVOL=(varVol 2g)
+   local HOMEVOL=(homeVol 2g)
+   local VARVOL=(varVol 5g)
    local LOGVOL=(logVol 2g)
-   local AUDVOL=(auditVol 100%FREE)
+   local AUDVOL=(auditVol 2g)
+   local DATAVOL=(dataVol 2g)
 
    # Clear the MBR and partition table
    dd if=/dev/zero of=${CHROOTDEV} bs=512 count=1000 > /dev/null 2>&1
@@ -65,6 +66,7 @@ function CarveLVM() {
    lvcreate --yes -W y -L ${VARVOL[1]} -n ${VARVOL[0]} ${VGNAME} || LVCSTAT=1
    lvcreate --yes -W y -L ${LOGVOL[1]} -n ${LOGVOL[0]} ${VGNAME} || LVCSTAT=1
    lvcreate --yes -W y -l ${AUDVOL[1]} -n ${AUDVOL[0]} ${VGNAME} || LVCSTAT=1
+   lvcreate --yes -W y -l ${DATAVOL[1]} -n ${DATAVOL[0]} ${VGNAME} || LVCSTAT=1
 
    # Create filesystems
    mkfs -t ext4 -L "${BOOTLABEL}" ${CHROOTDEV}1
@@ -73,6 +75,7 @@ function CarveLVM() {
    mkfs -t ext4 /dev/${VGNAME}/${VARVOL[0]}
    mkfs -t ext4 /dev/${VGNAME}/${LOGVOL[0]}
    mkfs -t ext4 /dev/${VGNAME}/${AUDVOL[0]}
+   mkfs -t ext4 /dev/${VGNAME}/${DATAVOL[0]}
    mkswap /dev/${VGNAME}/${SWAPVOL[0]}
 }
 
