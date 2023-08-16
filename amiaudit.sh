@@ -1,6 +1,6 @@
 #!/bin/sh
 SPDCHK=$(ethtool eth0 2> /dev/null | grep -q 10000)
-CITEST=$(stat -c "%n" /home/* | grep -Ev "(maintuser|lost\+found)")
+CITEST=$(stat -c "%n" /home/* | grep -Ev "(ec2-user|lost\+found)")
 TARGPART=$(lsblk -bnd /dev/xvda2 | awk '{print $4}')
 
 InstanceMeta() {

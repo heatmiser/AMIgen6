@@ -6,7 +6,7 @@
 CHROOT=${CHROOT:-/mnt/ec2-root}
 CONFROOT=`dirname $0`
 CLOUDCFG="$CHROOT/etc/cloud/cloud.cfg"
-MAINTUSR="maintuser"
+MAINTUSR="ec2-user"
 
 # Disable EPEL repos
 chroot ${CHROOT} yum-config-manager --disable "*epel*" > /dev/null
@@ -42,7 +42,7 @@ sed -i '/^system_info/,/^  ssh_svcname/d' ${CLOUDCFG}
 sed -i '/syntax=yaml/i\
 system_info:\
   default_user:\
-    name: maintuser\
+    name: ec2-user\
     lock_passwd: true\
     gecos: Local Maintenance User\
     groups: [wheel, adm]\
