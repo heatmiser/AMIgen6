@@ -43,9 +43,9 @@ function LogBrk() {
 
 # Partition as LVM 
 function CarveLVM() {
-   local ROOTVOL=(rootVol 6g)
-   local SWAPVOL=(swapVol 2g)
-   local HOMEVOL=(homeVol 2g)
+   local ROOTVOL=(rootVol 8g)
+   local SWAPVOL=(swapVol 1g)
+   local HOMEVOL=(homeVol 1g)
    local VARVOL=(varVol 5g)
    local LOGVOL=(logVol 2g)
    local AUDVOL=(auditVol 2g)
@@ -65,8 +65,8 @@ function CarveLVM() {
    lvcreate --yes -W y -L ${HOMEVOL[1]} -n ${HOMEVOL[0]} ${VGNAME} || LVCSTAT=1
    lvcreate --yes -W y -L ${VARVOL[1]} -n ${VARVOL[0]} ${VGNAME} || LVCSTAT=1
    lvcreate --yes -W y -L ${LOGVOL[1]} -n ${LOGVOL[0]} ${VGNAME} || LVCSTAT=1
-   lvcreate --yes -W y -l ${AUDVOL[1]} -n ${AUDVOL[0]} ${VGNAME} || LVCSTAT=1
-   lvcreate --yes -W y -l ${DATAVOL[1]} -n ${DATAVOL[0]} ${VGNAME} || LVCSTAT=1
+   lvcreate --yes -W y -L ${AUDVOL[1]} -n ${AUDVOL[0]} ${VGNAME} || LVCSTAT=1
+   lvcreate --yes -W y -L ${DATAVOL[1]} -n ${DATAVOL[0]} ${VGNAME} || LVCSTAT=1
 
    # Create filesystems
    mkfs -t ext4 -L "${BOOTLABEL}" ${CHROOTDEV}1
