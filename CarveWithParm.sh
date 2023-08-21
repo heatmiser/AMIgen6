@@ -8,13 +8,13 @@ OPTIONBUFR=`getopt -o v: --long volspec: -n ${PROGNAME} -- "$@"`
 eval set -- "$OPTIONBUFR"
 
 # Pre-load a "default" partition table
-VOLSPECARRAY[0]="rootVol:6g:/"
-VOLSPECARRAY[1]="swapVol:2g:SWAP"
-VOLSPECARRAY[2]="homeVol:2g:/home"
+VOLSPECARRAY[0]="rootVol:8g:/"
+VOLSPECARRAY[1]="swapVol:1g:SWAP"
+VOLSPECARRAY[2]="homeVol:1g:/home"
 VOLSPECARRAY[3]="varVol:5g:/var"
 VOLSPECARRAY[4]="logVol:2g:/var/log"
 VOLSPECARRAY[5]="auditVol:2g:/var/log/audit"
-VOLSPECARRAY[5]="dataVol:2g:/data"
+VOLSPECARRAY[6]="dataVol:2g:/data"
 
 # Override default values and/or extend array
 LoadArray() {
