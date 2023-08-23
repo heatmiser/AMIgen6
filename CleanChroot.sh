@@ -46,7 +46,7 @@ system_info:\
     lock_passwd: true\
     gecos: Local Maintenance User\
     groups: [wheel, adm]\
-    sudo: ["ALL=(root) NOPASSWD:ALL"]\
+    sudo: ["ALL=(ALL) NOPASSWD:ALL"]\
     shell: /bin/bash\
   distro: rhel\
   paths:\
