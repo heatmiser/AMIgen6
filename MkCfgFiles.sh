@@ -69,9 +69,9 @@ chroot $CHROOT /bin/bash -c "ln -s /boot/grub/grub.conf /etc/grub.conf"
   echo "IPV6INIT=no" ) > ${ALTROOT}/etc/sysconfig/network-scripts/ifcfg-eth0 
 
 # Make ssh relax about root logins
-( echo "UseDNS no"
-  echo "PermitRootLogin without-password" ) >> ${ALTROOT}/etc/ssh/sshd_config
+#( echo "UseDNS no"
+#  echo "PermitRootLogin without-password" ) >> ${ALTROOT}/etc/ssh/sshd_config
 
 # Ensure that SELinux contexts are up to date and mode dialed-back
 touch ${ALTROOT}/.autorelabel
-sed -i '/^SELINUX=/s/=.*/=permissive/' ${ALTROOT}/etc/selinux/config
+#sed -i '/^SELINUX=/s/=.*/=permissive/' ${ALTROOT}/etc/selinux/config
